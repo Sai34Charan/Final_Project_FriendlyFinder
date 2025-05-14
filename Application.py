@@ -53,8 +53,8 @@ st.markdown('<div class="subtitle"> Bridging Connections with AI Smarts and a Hu
 
 # Sidebar Features
 st.sidebar.image(
-    r"C:\Users\mrmoh\Downloads\Logo.jpg",
-    width=350
+    r"C:\Users\sai charan\Desktop\VS Code\Friendly Finder\Final_Project_FriendlyFinder\Logo.jpg",
+    width=350,
 )
 
 
