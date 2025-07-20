@@ -52,10 +52,7 @@ st.markdown('<div class="main-title">FriendlyFinder👀🔍</div>', unsafe_allow
 st.markdown('<div class="subtitle"> Bridging Connections with AI Smarts and a Human Touch!🤖❤️</div>', unsafe_allow_html=True)
 
 # Sidebar Features
-st.sidebar.image(
-    r"C:\Users\sai charan\Desktop\VS Code\Friendly Finder\Final_Project_FriendlyFinder\Logo.jpg",
-    width=350,
-)
+st.sidebar.image("assets/Logo.jpg", width=350)
 
 
 # Set up the sidebar for "ℹ️ About" section with concise description
