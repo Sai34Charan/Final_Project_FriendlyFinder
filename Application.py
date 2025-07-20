@@ -1,15 +1,12 @@
 import streamlit as st
 from PIL import Image
 import pyttsx3
-import os
+#import os
 import pytesseract  
 import google.generativeai as genai
-from dotenv import load_dotenv
 from langchain_google_genai import GoogleGenerativeAI
 
-load_dotenv()
-
-genai.configure(api_key=os.getenv("GEMINI_API_KEY", st.secrets["google_api"]["GEMINI_API_KEY"]))
+genai.configure(api_key = (st.secrets["google_api"]["GEMINI_API_KEY"]))
 # Set Tesseract OCR path
 pytesseract.pytesseract.tesseract_cmd = r'"C:\Program Files\Tesseract-OCR\tesseract.exe"'
 
