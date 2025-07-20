@@ -4,16 +4,19 @@ import pyttsx3
 import os
 import pytesseract  
 import google.generativeai as genai
+from dotenv import load_dotenv
 from langchain_google_genai import GoogleGenerativeAI
 
+load_dotenv()
+
+genai.configure(api_key=os.getenv("GEMINI_API_KEY", st.secrets["google_api"]["GEMINI_API_KEY"]))
 # Set Tesseract OCR path
 pytesseract.pytesseract.tesseract_cmd = r'"C:\Program Files\Tesseract-OCR\tesseract.exe"'
 
 # Initialize Google Generative AI with API Key
-os.environ["GOOGLE_API_KEY"] = GEMINI_API_KEY
+#os.environ["GOOGLE_API_KEY"] = GEMINI_API_KEY
 
-llm = GoogleGenerativeAI(model="gemini-1.5-pro", api_key=GEMINI_API_KEY)
-
+llm = genai.GenerativeModel(model_name = "gemini-1.5-flash-latest")
 # Initialize Text-to-Speech engine
 engine = pyttsx3.init()
 
