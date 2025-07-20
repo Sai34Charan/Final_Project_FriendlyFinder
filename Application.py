@@ -1,9 +1,10 @@
 import streamlit as st
 from PIL import Image
-import pyttsx3
+#import pyttsx3
 #import os
 import pytesseract  
 import google.generativeai as genai
+import streamlit.components.v1 as components
 from langchain_google_genai import GoogleGenerativeAI
 
 genai.configure(api_key = (st.secrets["google_api"]["GEMINI_API_KEY"]))
@@ -15,7 +16,7 @@ pytesseract.pytesseract.tesseract_cmd = r'"C:\Program Files\Tesseract-OCR\tesser
 
 llm = genai.GenerativeModel(model_name = "gemini-1.5-flash-latest")
 # Initialize Text-to-Speech engine
-engine = pyttsx3.init()
+#engine = pyttsx3.init()
 
 
 
@@ -88,10 +89,18 @@ def extract_text_from_image(image):
     """Extracts text from the given image."""
     return pytesseract.image_to_string(image)
 
-def text_to_speech(text):
-    """Converts the given text to speech."""
-    engine.say(text)
-    engine.runAndWait()
+# def text_to_speech(text):
+#     """Converts the given text to speech."""
+#     engine.say(text)
+#     engine.runAndWait()
+
+def tts_browser(text):
+    components.html(f"""
+        <script>
+            var msg = new SpeechSynthesisUtterance("{text}");
+            window.speechSynthesis.speak(msg);
+        </script>
+    """, height=0)
 
 def generate_scene_description(input_prompt, image_data):
     """Generates a scene description using Google Generative AI."""
@@ -156,7 +165,7 @@ if uploaded_file:
         with st.spinner("Converting text to speech..."):
             text = extract_text_from_image(image)
             if text.strip():
-                text_to_speech(text)
+                tts_browser(text)
                 st.success("✅ Text-to-Speech Conversion Completed!")
             else:
                 st.warning("Please provide some text.")
